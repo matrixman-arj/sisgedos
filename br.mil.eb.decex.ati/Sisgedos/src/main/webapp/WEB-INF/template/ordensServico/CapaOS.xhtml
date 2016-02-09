@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid columns="4" style="width:100%; margin-top: 20px" columnClasses="rotulo, campo,rotulo, campo">
+		<p:outputLabel value="Número" rendered="#{cadastroOSBean.ordemServico.existente}" />
+		<h:outputText value="#{cadastroOSBean.ordemServico.id}" rendered="#{cadastroOSBean.ordemServico.existente}" />
+		
+		<p:outputLabel value="Data de criação" rendered="#{cadastroOSBean.ordemServico.existente}" />
+		<h:outputText value="#{cadastroOSBean.ordemServico.dataCriacao}" rendered="#{cadastroOSBean.ordemServico.existente}" >
+			<f:convertDateTime pattern="dd/MM/yyyy"/>
+		</h:outputText>
+		
+		<p:outputLabel value="Status" />
+		<h:outputText value="#{cadastroOSBean.ordemServico.status.descricao}" />
+		
+		<p:outputLabel value="Técnico" for="tecnico" />
+		<p:selectOneMenu id="tecnico" value="#{cadastroOSBean.ordemServico.tecnico}">
+			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems value="#{cadastroOSBean.tecnicos}" var="tecnico" 
+				itemValue="#{tecnico}" itemLabel="#{tecnico.nome}"/>
+		</p:selectOneMenu>
+		
+		<p:outputLabel value="Usuário" for="usuario" />
+		<p:autoComplete id="usuario" size="40" dropdown="true" 
+			value="#{cadastroOSBean.ordemServico.usuario}" completeMethod="#{cadastroOSBean.completarUsuario}" 
+				var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}" forceSelection="true"/>
+		
+		<p:outputLabel value="Forma de pagamento" for="formaPagamento" />
+		<p:selectOneMenu id="formaPagamento" value="#{cadastroOSBean.ordemServico.formaPagamento}">
+			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems value="#{cadastroOSBean.formasPagamento}" var="formaPagamento"
+				itemValue="#{formaPagamento}" itemLabel="#{formaPagamento.descricao}" />
+		</p:selectOneMenu>
+						
+		<p:outputLabel value="Valor do frete" for="valorFrete" />
+		<h:inputText id="valorFrete" size="10" maxlength="10" styleClass="moeda" 
+			value="#{cadastroOSBean.ordemServico.valorFrete}">
+			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+			
+			<p:ajax event="change" process="@this" update="totalOS"
+				listener="#{cadastroOSBean.recalcularOS}"/>
+		</h:inputText>
+		
+		<p:outputLabel value="Subtotal" style="font-weight: bold"/>
+        <h:outputText value="#{cadastroOSBean.ordemServico.valorSubtotal}" 
+        	style="font-weight: bold" id="subtotal" >
+        	<f:convertNumber type="currency"/>
+        </h:outputText>
+		
+		<p:outputLabel value="Valor de desconto" for="valorDesconto" />
+		<p:inputText id="valorDesconto" size="10" maxlength="10" styleClass="moeda"
+			value="#{cadastroOSBean.ordemServico.valorDesconto}" >
+			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+			
+			<p:ajax event="change" process="@this" update="totalOS"
+				listener="#{cadastroOSBean.recalcularOS}"/>
+			</p:inputText>
+		
+		<p:outputLabel value="Total do pedido" style="font-weight: bold; font-size: 1.1em" />
+		<h:outputText value="#{cadastroOSBean.ordemServico.valorTotal}" 
+			style="font-weight: bold; font-size: 1.1em" id="totalOS" >
+			<f:convertNumber type="currency" />
+		</h:outputText>
+		
+	</p:panelGrid>
+
+</ui:composition>

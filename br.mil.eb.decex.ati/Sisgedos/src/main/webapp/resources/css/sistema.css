@@ -1,0 +1,159 @@
+@charset "utf-8";
+
+body {	
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	font-weight: normal;
+}
+
+header {	
+	padding: 5px 0px;	
+	margin-bottom: 20px;
+	height: 30px;
+	color: #800040;
+	background-color: #c0c081;	
+	box-shadow: 0px 2px 2px #008040;
+}
+
+.cabecalhoSistema-logo {
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 20px;	
+}
+
+.cabecalhoSistema-titulo {
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #804040!important;
+	box-shadow: 0px 2px 2px #ffffff;
+	
+}
+
+.cabecalhoSistema-bemvindo {
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	
+}
+
+.cabecalhoSistema-menu_sistema {
+	float: left; 
+	height: 10px;	
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+}
+
+
+#conteudo {
+	padding: 0px 8px
+}
+
+#conteudo > form > h1 {
+	text-align: center;
+}
+
+footer {
+	padding: 0px 8px;
+	margin-bottom: 10px
+}
+
+h1 {
+	font-size: 24px;
+	font-weight: 500px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.cabecalho-pagina {
+	text-align: center;
+}
+
+#login-dialog{
+	width: 290px;
+	margin: auto;
+	margin-top: 150px;	
+}
+
+.grid-login {
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	margin-top: 8px;
+	padding: 10px;	
+}
+.rotulo {
+	width: 150px;
+}
+
+.ui-panelgrid td {
+	height: 34px;
+}
+
+.ajax-status {
+	position: fixed;
+	top: 55px;
+	right: 10px;
+	width: 35px;
+	height: 35px;
+}
+.ui-selectmanycheckbox td {
+	border-width: 0px !important;
+	padding: 0px !important;
+}
+
+.ui-selectmanycheckbox td label {
+	
+	padding-right: 10px;
+}
+
+.produto-tabela input {
+	width: 99%;
+}
+
+/*Customiza Tabview - inicio*/
+.ui-tabs .ui-tabs-panel {
+	padding: 0.5em 0.2em !important;	
+}
+
+.ui-tabs {
+	padding: 0px !important;	
+}
+
+.ui-tabs .ui-tabs-nav {
+	margin: -1px !important;	
+}
+
+.ui-tabs .ui-tabs-top > .ui-tabs-nav {
+	padding: 0px !important;	
+}
+/*Customiza Tabview - fim*/
+
+/* Menu sistema inicio */
+
+.menu-sistema {
+    border: 0px !important;
+    padding: 0px !important;
+    background: none !important;
+}
+
+.menu-sistema .ui-menu-parent > 
+a .ui-menuitem-text, .menu-sistema > 
+.ui-menu-list > .ui-menuitem > 
+a > .ui-menuitem-text {
+    color: #400040!important;
+}
+
+.menu-sistema .ui-icon-triangle-1-s {
+    background: url(#{resource['images:seta-para-baixo.png']}) no-repeat;
+}
+/* Menu sistema fim */
+
+

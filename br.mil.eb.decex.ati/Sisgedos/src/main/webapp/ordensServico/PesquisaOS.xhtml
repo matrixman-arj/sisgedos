@@ -1,0 +1,100 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa de pedidos</ui:define>
+
+	<ui:define name="corpo">
+		<h:form>
+			<h1 class="cabecalho-pagina">Pesquisa de pedidos</h1>
+			
+			<p:toolbar style="margin-top: 20px">			
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" action="#{pesquisaOSBean.pesquisar}" 
+						update="@form"/>
+				</p:toolbarGroup>
+				
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" outcome="/ordensServico/CadastroOS" />
+				
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+					columnClasses="rotulo, campo">
+					
+				<p:outputLabel value="Numero" />
+				<h:panelGroup>
+					<p:inputText size="10" value="#{pesquisaOSBean.filtro.numeroDe}" />
+					a
+					<p:inputText size="10" value="#{pesquisaOSBean.filtro.numeroAte}" />
+				</h:panelGroup>
+				
+				<p:outputLabel value="Data de criação" />
+				<h:panelGroup>
+					<p:calendar size="10"  pattern="dd/MM/yyyy" 
+						value="#{pesquisaOSBean.filtro.dataCriacaoDe}"/>
+					a
+					<p:calendar size="10"  pattern="dd/MM/yyyy" 
+						value="#{pesquisaOSBean.filtro.dataCriacaoAte}"/>
+				</h:panelGroup>
+				
+				<p:outputLabel value="Técnico" />
+				<p:inputText size="40" value="#{pesquisaOSBean.filtro.nomeTecnico}" />
+				
+				<p:outputLabel value="Usuario" />
+				<p:inputText size="40" value="#{pesquisaOSBean.filtro.nomeUsuario}" />
+				
+				<p:outputLabel value="Status" />
+				<p:selectManyCheckbox value="#{pesquisaOSBean.filtro.statusOS}">
+					<f:selectItems value="#{pesquisaOSBean.statusOS}" var="status" 
+						itemValue="#{status}" itemLabel="#{status.descricao}"/>
+				</p:selectManyCheckbox>									
+			</p:panelGrid>
+			
+			<p:dataTable id="osTable" value="#{pesquisaOSBean.osFiltradas}" var="os"
+				style="margin-top: 20px" emptyMessage="Nenhum pedido encontrado"
+				rows="20" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+				
+				<p:column headerText="Número" style="text-align: center; width: 100px">
+					<h:outputText value="#{os.id}" />
+				</p:column>
+				
+				<p:column headerText="Usuário">
+					<h:outputText value="#{os.usuario.nome}" />
+				</p:column>
+				
+				<p:column headerText="Técnico">
+					<h:outputText value="#{os.tecnico.nome}" />
+				</p:column>
+				
+				<p:column headerText="Data de criação" style="text-align: center; width: 140px">
+					<h:outputText value="#{os.dataCriacao}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Valor total" style="text-align: right; width: 120px">
+					<h:outputText value="#{os.valorTotal}" >
+						<f:convertNumber type="currency" />
+					</h:outputText>
+					
+				</p:column>
+				
+				<p:column headerText="Status" style="width: 100px">
+					<h:outputText value="#{os.status.descricao}" />
+				</p:column>
+				
+				<p:column style="text-align: center; width: 50px">
+					<p:button icon="ui-icon-pencil" title="Editar" outcome="/ordensServico/CadastroOS" >
+						<f:param name="os" value="#{os.id}" />
+					</p:button>
+				</p:column>				
+			</p:dataTable>
+			
+		</h:form>		
+	</ui:define>
+</ui:composition>

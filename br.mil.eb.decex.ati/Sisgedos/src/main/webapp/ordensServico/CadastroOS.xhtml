@@ -1,0 +1,47 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui">
+	
+	<f:metadata>
+	<o:viewParam name="os" value="#{cadastroOSBean.ordemServico}" />
+		<f:event listener="#{cadastroOSBean.inicialisar}" type="preRenderView" />
+	</f:metadata>
+	
+	<ui:define name="titulo">#{cadastroOSBean.editando ? "Edição de Ordem de Serviço" : "Nova Ordem de Serviço"}</ui:define>
+
+	<ui:define name="corpo">
+	
+		<h:form id="frmCadastroOS">
+		
+			<h1 class="cabecalho-pagina">#{cadastroOSBean.editando ? "Edição de Ordem de Serviço" : "Nova Ordem de Serviço"}</h1>
+			
+			<p:messages autoUpdate="true" closable="true"/>
+			
+			<ui:include src="/WEB-INF/template/ordensServico/BotoesOS.xhtml"/>
+			
+			<ui:include src="/WEB-INF/template/ordensServico/CapaOS.xhtml"/>
+			
+			<p:tabView style="margin-top:20px">
+				<p:tab title="Itens" >
+					<ui:include src="/WEB-INF/template/ordensServico/ItensOS.xhtml"/>
+				</p:tab>				
+				
+				<p:tab title="Dados de entrega" >
+					<ui:include src="/WEB-INF/template/ordensServico/DadosEquiptoOS.xhtml"/>
+				</p:tab>
+				
+				<p:tab title="Observação" >
+					<ui:include src="/WEB-INF/template/ordensServico/ObservacaoOS.xhtml"/>
+				</p:tab>
+			
+			</p:tabView>
+			
+		</h:form>
+		
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid id="equipamento" columns="4" style="width: 100%" columnClasses="rotulo, campo, rotulo, campo" >
+		<p:outputLabel value="Data da entrega" for="dataEntrega" />
+		<p:calendar id="dataEntrega" size="10" pattern="dd/MM/yyyy" 
+			value="#{cadastroOSBean.ordemServico.dataEntrega}" />
+	
+	
+		<p:spacer/>
+		<p:spacer/>
+		
+		<p:outputLabel value="Descrição" for="descricao" />
+		<h:outputText id="descricao" size="50" value="#{cadastroOSBean.ordemServico.dadosEquipto.descricao}"/>
+		
+		<p:outputLabel value="Tipo" for="tipo" />
+		<h:outputText id="tipo" size="30" value="#{cadastroOSBean.ordemServico.dadosEquipto.tipo}" />
+		
+		<p:outputLabel value="Marca" for="marca" />
+		<h:outputText id="marca" size="50" value="#{cadastroOSBean.ordemServico.dadosEquipto.marca}" />
+		
+		<p:outputLabel value="Modelo" for="modelo" />
+		<h:outputText id="modelo" size="20" value="#{cadastroOSBean.ordemServico.dadosEquipto.modelo}" />
+		
+		<p:outputLabel value="Estado" for="entregaEstado" />
+		<p:inputText id="entregaEstado" size="20"/>
+		
+		<p:outputLabel value="CEP" for="entregaCep" />
+		<p:inputText id="entregaCep" size="10"/>
+		
+	</p:panelGrid>
+
+</ui:composition>
