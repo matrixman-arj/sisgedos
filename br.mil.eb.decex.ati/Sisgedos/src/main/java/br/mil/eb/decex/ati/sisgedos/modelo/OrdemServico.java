@@ -173,7 +173,7 @@ public class OrdemServico implements Serializable {
 		this.dadosEquipto = dadosEquipto;
 	}
 	
-	@NotNull
+	
 	@OneToMany(mappedBy = "ordemServico",cascade = CascadeType.ALL, orphanRemoval = true)
 	public List<ItemOS> getItens() {
 		return itens;
@@ -252,6 +252,20 @@ public class OrdemServico implements Serializable {
 	@Transient
 	public boolean isOrcamento() {		
 		return statusOS.ORCAMENTO.equals(this.getStatus());
+	}
+
+	public void removerItemVazio() {
+		ItemOS primeiroItem = this.getItens().get(0);
+		
+		if(primeiroItem != null && primeiroItem.getProduto().getId() == null){
+			this.getItens().remove(0);
+		}
+		
+	}
+	
+	@Transient
+	public boolean isValorTotalNegativo() {		
+		return this.getValorTotal().compareTo(BigDecimal.ZERO)< 0;
 	}
 	
 }

@@ -66,10 +66,16 @@ public class CadastroOSBean implements Serializable {
 	}
 	
 	public void salvar(){
+		this.ordemServico.removerItemVazio();
+		
+	try{
 		this.ordemServico = this.cadastroOsService.salvar(this.ordemServico);
 		
 		FacesUtil.addInfoMessage("Ordem de serviço salva com sucesso!");
+	}finally{
+		this.ordemServico.adicionarItemVazio();
 	}
+ }
 	
 	public void recalcularOS(){
 		if(this.ordemServico != null){
@@ -116,6 +122,18 @@ public class CadastroOSBean implements Serializable {
 
 	public List<Produto> completarProduto(String nome){
 		return this.produtos.porNome(nome);
+	}
+	
+	public void atualizarQuantidade(ItemOS item, int linha){
+		if(item.getQuantidade() < 1){
+			if(linha == 0){
+				item.setQuantidade(1);
+			}else{
+				this.getOrdemServico().getItens().remove(linha);
+			}
+		}
+		
+		this.ordemServico.recalcularValorTotal();
 	}
 	
 	public FormaPagamento[] getFormasPagamento(){

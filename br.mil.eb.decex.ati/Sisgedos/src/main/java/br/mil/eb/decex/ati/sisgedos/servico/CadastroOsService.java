@@ -23,6 +23,16 @@ public class CadastroOsService implements Serializable {
 			ordemServico.setStatus(statusOS.ORCAMENTO);
 		}
 		
+		ordemServico.recalcularValorTotal();
+		
+		if (ordemServico.getItens().isEmpty()){
+			throw new NegocioException("A ordem de serviço deve possuir pelo menos um item.");
+		}
+		
+		if (ordemServico.isValorTotalNegativo()){
+			throw new NegocioException("Valor total do pedido não pode ser negativo.");
+		}
+		
 		ordemServico = this.ordensServico.guardar(ordemServico);
 		return ordemServico;
 	}
