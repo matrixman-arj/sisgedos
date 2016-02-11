@@ -50,8 +50,9 @@
 		</p:column>
 
 		<p:column headerText="Estoque"
-			style="text-align: center; width: 100px">
-			<h:outputText value="#{item.produto.quantidadeEstoque}" />
+			style="text-align: center; width: 100px">			
+			<h:outputText value="#{item.produto.quantidadeEstoque}" 			
+				style="#{item.estoqueInsuficiente ? 'color: red' :'' }"/>
 		</p:column>
 
 		<p:column headerText="Valor total"

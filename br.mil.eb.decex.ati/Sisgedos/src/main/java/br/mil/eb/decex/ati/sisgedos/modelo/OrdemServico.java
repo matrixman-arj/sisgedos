@@ -268,4 +268,9 @@ public class OrdemServico implements Serializable {
 		return this.getValorTotal().compareTo(BigDecimal.ZERO)< 0;
 	}
 	
+	@Transient
+	public boolean isEmitido() {		
+		return statusOS.EMITIDA.equals(this.getStatus());
+	}
+	
 }
