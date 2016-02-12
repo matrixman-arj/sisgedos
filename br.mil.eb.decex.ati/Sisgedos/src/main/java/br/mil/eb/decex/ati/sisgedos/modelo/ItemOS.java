@@ -103,7 +103,7 @@ public class ItemOS implements Serializable {
 	
 	@Transient
 	public boolean isEstoqueSuficiente(){
-		return this.getOrdemServico().isEmitido() 
+		return this.getOrdemServico().isEmitido() || this.getProduto().getId() == null 
 				|| this.getProduto().getQuantidadeEstoque() >= this.getQuantidade();
 	}
 	

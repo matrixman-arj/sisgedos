@@ -12,7 +12,8 @@
 		</p:toolbarGroup>
 	
 		<p:toolbarGroup align="right">
-			<p:commandButton value="Emitir" />
+			<p:commandButton value="Emitir" action="#{emissaoOSBean.emitirOS}" 
+				process="@form" update="@form"/>
 			<p:commandButton value="Cancelar" />
 			<p:commandButton value="Enviar por e-mail" />
 			

@@ -3,6 +3,7 @@ package br.mil.eb.decex.ati.sisgedos.controle;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.inject.Produces;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,7 +40,11 @@ public class CadastroOSBean implements Serializable {
 	private CadastroOsService cadastroOsService;
 	
 	private String sku;
-	private OrdemServico ordemServico;	
+	
+	@Produces
+	@OSEdicao
+	private OrdemServico ordemServico;
+	
 	private Equipamento equipamento;
 	private List<Usuario> tecnicos;
 	

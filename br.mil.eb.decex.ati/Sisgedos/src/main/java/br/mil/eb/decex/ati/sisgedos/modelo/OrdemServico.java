@@ -273,4 +273,14 @@ public class OrdemServico implements Serializable {
 		return statusOS.EMITIDA.equals(this.getStatus());
 	}
 	
+	@Transient
+	public boolean isNaoEmissivel() {		
+		return !this.isEmissivel() ;
+	}
+	
+	@Transient
+	public boolean isEmissivel() {		
+		return this.isExistente() && this.isOrcamento();
+	}
+	
 }
