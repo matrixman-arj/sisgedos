@@ -267,5 +267,19 @@ public class OrdemServico implements Serializable {
 	public boolean isValorTotalNegativo() {		
 		return this.getValorTotal().compareTo(BigDecimal.ZERO)< 0;
 	}
+
+	public boolean iEmitida() {		
+		return statusOS.EMITIDA.equals(this.getStatus());
+	}
+	
+	@Transient
+	public boolean isNaoEmissivel() {		
+		return !this.isEmissivel();
+	}
+	
+	@Transient
+	public boolean isEmissivel(){
+		return this.isExistente() && this.isOrcamento();
+	}
 	
 }

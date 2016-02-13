@@ -30,7 +30,7 @@ public class CadastroOsService implements Serializable {
 		}
 		
 		if (ordemServico.isValorTotalNegativo()){
-			throw new NegocioException("Valor total do pedido não pode ser negativo.");
+			throw new NegocioException("Valor total da ordem de serviço não pode ser negativo.");
 		}
 		
 		ordemServico = this.ordensServico.guardar(ordemServico);

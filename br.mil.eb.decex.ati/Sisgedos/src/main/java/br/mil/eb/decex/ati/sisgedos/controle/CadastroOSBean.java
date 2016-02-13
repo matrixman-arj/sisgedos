@@ -3,6 +3,8 @@ package br.mil.eb.decex.ati.sisgedos.controle;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Produces;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,6 +12,7 @@ import javax.inject.Named;
 import org.apache.commons.lang3.StringUtils;
 
 import br.mil.eb.decex.ati.sisgedos.enumerado.FormaPagamento;
+import br.mil.eb.decex.ati.sisgedos.evento.OSAlteradaEvent;
 import br.mil.eb.decex.ati.sisgedos.modelo.Equipamento;
 import br.mil.eb.decex.ati.sisgedos.modelo.ItemOS;
 import br.mil.eb.decex.ati.sisgedos.modelo.OrdemServico;
@@ -39,7 +42,12 @@ public class CadastroOSBean implements Serializable {
 	private CadastroOsService cadastroOsService;
 	
 	private String sku;
-	private OrdemServico ordemServico;	
+	
+	@Produces
+	@OrdemServicoEdicao
+	private OrdemServico ordemServico;
+	
+	
 	private Equipamento equipamento;
 	private List<Usuario> tecnicos;
 	
@@ -63,6 +71,10 @@ public class CadastroOSBean implements Serializable {
 	private void limpar(){
 		ordemServico = new OrdemServico();
 		equipamento = new Equipamento();
+	}
+	
+	public void oSAlterada(@Observes OSAlteradaEvent event){
+		this.ordemServico = event.getOrdemServico();
 	}
 	
 	public void salvar(){
