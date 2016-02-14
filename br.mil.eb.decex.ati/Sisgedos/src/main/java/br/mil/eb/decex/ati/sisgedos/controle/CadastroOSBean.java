@@ -20,7 +20,7 @@ import br.mil.eb.decex.ati.sisgedos.modelo.Produto;
 import br.mil.eb.decex.ati.sisgedos.modelo.Usuario;
 import br.mil.eb.decex.ati.sisgedos.repositorio.Produtos;
 import br.mil.eb.decex.ati.sisgedos.repositorio.Usuarios;
-import br.mil.eb.decex.ati.sisgedos.servico.CadastroOsService;
+import br.mil.eb.decex.ati.sisgedos.servico.CadastroOSService;
 import br.mil.eb.decex.ati.sisgedos.util.jsf.FacesUtil;
 import br.mil.eb.decex.ati.sisgedos.validacao.SKU;
 
@@ -39,7 +39,7 @@ public class CadastroOSBean implements Serializable {
 	
 	
 	@Inject
-	private CadastroOsService cadastroOsService;
+	private CadastroOSService cadastroOsService;
 	
 	private String sku;
 	

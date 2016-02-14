@@ -9,31 +9,30 @@ import br.mil.eb.decex.ati.sisgedos.modelo.OrdemServico;
 import br.mil.eb.decex.ati.sisgedos.repositorio.OrdensServico;
 import br.mil.eb.decex.ati.sisgedos.util.jpa.Transactional;
 
-public class EmissaoOSService implements Serializable {
+public class CancelamentoOSService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private CadastroOSService cadastroOsService;
+	private OrdensServico ordensServico;
 	
 	@Inject
 	private EstoqueService estoqueService;
 	
-	@Inject
-	private OrdensServico ordensServico;
-	
 	@Transactional
-	public OrdemServico emitir(OrdemServico ordemServico){
-		ordemServico = this.cadastroOsService.salvar(ordemServico);
+	public OrdemServico cancelar(OrdemServico ordemServico) {
+		ordemServico = this.ordensServico.porId(ordemServico.getId());
 		
-		if(ordemServico.isNaoEmissivel()){
-			throw new NegocioException("Ordem de serviço não pode ser emitida com status" 
+		if (ordemServico.isNaoCancelavel()){
+			throw new NegocioException("Ordem de serviço não pode ser cancelada no status "
 					+ ordemServico.getStatus().getDescricao() + ".");
 		}
+		if 
+		(ordemServico.iEmitida()){
+			this.estoqueService.retornarItensEstoque(ordemServico);
+		}
 		
-		this.estoqueService.baixarItensEstoque(ordemServico);
-		
-		ordemServico.setStatus(StatusOS.EMITIDA);
+		ordemServico.setStatus(StatusOS.CANCELADA);
 		
 		ordemServico = this.ordensServico.guardar(ordemServico);
 		

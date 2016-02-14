@@ -2,7 +2,7 @@ package br.mil.eb.decex.ati.sisgedos.repositorio.filtro;
 
 import java.io.Serializable;
 import java.util.Date;
-import br.mil.eb.decex.ati.sisgedos.enumerado.statusOS;
+import br.mil.eb.decex.ati.sisgedos.enumerado.StatusOS;
 
 
 public class OSFilter implements Serializable {
@@ -15,7 +15,7 @@ public class OSFilter implements Serializable {
 	private Date dataCriacaoAte;
 	private String nomeTecnico;
 	private String nomeUsuario;
-	private statusOS[] statusOS;
+	private StatusOS[] statusOS;
 	
 	
 	public Long getNumeroDe() {
@@ -66,11 +66,11 @@ public class OSFilter implements Serializable {
 		this.nomeUsuario = nomeUsuario;
 	}
 	
-	public statusOS[] getStatusOS() {
+	public StatusOS[] getStatusOS() {
 		return statusOS;
 	}
 	
-	public void setStatusOS(statusOS[] statusOS) {
+	public void setStatusOS(StatusOS[] statusOS) {
 		this.statusOS = statusOS;
 	}
 }

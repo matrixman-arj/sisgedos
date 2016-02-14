@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.mil.eb.decex.ati.sisgedos.enumerado.statusOS;
+import br.mil.eb.decex.ati.sisgedos.enumerado.StatusOS;
 import br.mil.eb.decex.ati.sisgedos.modelo.OrdemServico;
 import br.mil.eb.decex.ati.sisgedos.repositorio.OrdensServico;
 import br.mil.eb.decex.ati.sisgedos.repositorio.filtro.OSFilter;
@@ -34,8 +34,8 @@ public class PesquisaOSBean implements Serializable {
 		osFiltradas = ordensServico.filtrados(filtro);
 	}
 	
-	public statusOS[] getStatusOS(){
-		return statusOS.values();
+	public StatusOS[] getStatusOS(){
+		return StatusOS.values();
 	}
 	
 

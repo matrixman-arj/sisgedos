@@ -2,8 +2,8 @@ package br.mil.eb.decex.ati.sisgedos.controle;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Event;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,7 +13,7 @@ import br.mil.eb.decex.ati.sisgedos.servico.EmissaoOSService;
 import br.mil.eb.decex.ati.sisgedos.util.jsf.FacesUtil;
 
 @Named
-@ViewScoped
+@RequestScoped
 public class EmissaoOSBean implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;

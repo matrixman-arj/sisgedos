@@ -23,7 +23,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import br.mil.eb.decex.ati.sisgedos.enumerado.FormaPagamento;
-import br.mil.eb.decex.ati.sisgedos.enumerado.statusOS;
+import br.mil.eb.decex.ati.sisgedos.enumerado.StatusOS;
 
 @Entity
 @Table(name = "ordem_servico")
@@ -38,7 +38,7 @@ public class OrdemServico implements Serializable {
 	private BigDecimal valorFrete = BigDecimal.ZERO;
 	private BigDecimal valorDesconto = BigDecimal.ZERO;
 	private BigDecimal valorTotal = BigDecimal.ZERO ;
-	private statusOS status = statusOS.ORCAMENTO;
+	private StatusOS status = StatusOS.ORCAMENTO;
 	private FormaPagamento formaPagamento;
 	private Usuario tecnico;
 	private Usuario usuario;
@@ -119,11 +119,11 @@ public class OrdemServico implements Serializable {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 20)
-	public statusOS getStatus() {
+	public StatusOS getStatus() {
 		return status;
 	}
 	
-	public void setStatus(statusOS status) {
+	public void setStatus(StatusOS status) {
 		this.status = status;
 	}
 	
@@ -251,7 +251,7 @@ public class OrdemServico implements Serializable {
 	
 	@Transient
 	public boolean isOrcamento() {		
-		return statusOS.ORCAMENTO.equals(this.getStatus());
+		return StatusOS.ORCAMENTO.equals(this.getStatus());
 	}
 
 	public void removerItemVazio() {
@@ -269,7 +269,7 @@ public class OrdemServico implements Serializable {
 	}
 
 	public boolean iEmitida() {		
-		return statusOS.EMITIDA.equals(this.getStatus());
+		return StatusOS.EMITIDA.equals(this.getStatus());
 	}
 	
 	@Transient
@@ -280,6 +280,21 @@ public class OrdemServico implements Serializable {
 	@Transient
 	public boolean isEmissivel(){
 		return this.isExistente() && this.isOrcamento();
+	}
+	
+	@Transient
+	public boolean isCancelavel(){
+		return this.isExistente() && !this.isCancelado();
+	}
+	
+	@Transient
+	private boolean isCancelado() {		
+		return StatusOS.CANCELADA.equals(this.getStatus());
+	}
+
+	@Transient
+	public boolean isNaoCancelavel() {		
+		return false;
 	}
 	
 }
