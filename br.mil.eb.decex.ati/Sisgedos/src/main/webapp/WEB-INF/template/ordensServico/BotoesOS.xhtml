@@ -19,7 +19,8 @@
 			<p:commandButton value="Cancelar" action="#{cancelamentoOSBean.cancelarOrdemServico}"
 				process="@this" update="@form" disabled="#{cadastroOSBean.ordemServico.naoCancelavel}" />
 				
-			<p:commandButton value="Enviar por e-mail" />
+			<p:commandButton value="Enviar por e-mail" action="#{envioOSEmailBean.enviarOrdemServico}" 
+				process="@this" disabled="#{cadastroOSBean.ordemServico.naoEnviavelPorEmail}"/>
 			
 			<p:separator/>
 			<p:button value="Pesquisa" outcome="/ordensServico/PesquisaOS" />
