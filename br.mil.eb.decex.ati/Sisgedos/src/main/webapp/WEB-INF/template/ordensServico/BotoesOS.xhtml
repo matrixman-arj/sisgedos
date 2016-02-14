@@ -8,14 +8,17 @@
 		<p:toolbarGroup>
 			<p:button value="Novo" outcome="/ordensServico/CadastroOS" />
 			<p:commandButton value="Salvar" action="#{cadastroOSBean.salvar}" 
-				update="@form" />
+				update="@form" disabled="#{cadastroOSBean.ordemServico.naoAlteravel}" />
 		</p:toolbarGroup>
 	
 		<p:toolbarGroup align="right">
+		
 			<p:commandButton value="Emitir" action="#{emissaoOSBean.emitirOrdemServico}" 
-				process="@form" update="@form"/>
+				process="@form" update="@form" disabled="#{cadastroOSBean.ordemServico.naoEmissivel}" />
+				
 			<p:commandButton value="Cancelar" action="#{cancelamentoOSBean.cancelarOrdemServico}"
-				process="@this" update="@form"/>
+				process="@this" update="@form" disabled="#{cadastroOSBean.ordemServico.naoCancelavel}" />
+				
 			<p:commandButton value="Enviar por e-mail" />
 			
 			<p:separator/>

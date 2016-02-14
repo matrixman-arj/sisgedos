@@ -25,6 +25,11 @@ public class CadastroOSService implements Serializable {
 		
 		ordemServico.recalcularValorTotal();
 		
+		if (ordemServico.isNaoAlteravel()){
+			throw new NegocioException("Ordem de serviço não pode ser alterada no status " 
+					+ ordemServico.getStatus().getDescricao() + ".");
+		}
+		
 		if (ordemServico.getItens().isEmpty()){
 			throw new NegocioException("A ordem de serviço deve possuir pelo menos um item.");
 		}

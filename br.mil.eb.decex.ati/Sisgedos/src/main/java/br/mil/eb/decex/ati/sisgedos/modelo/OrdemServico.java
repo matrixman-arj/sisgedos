@@ -294,7 +294,16 @@ public class OrdemServico implements Serializable {
 
 	@Transient
 	public boolean isNaoCancelavel() {		
-		return false;
+		return !this.isCancelavel();
 	}
 	
+	@Transient
+	public boolean isAlteravel(){
+		return this.isOrcamento();
+	}	
+	
+	@Transient
+	public boolean isNaoAlteravel(){
+		return !this.isAlteravel();
+	}
 }
