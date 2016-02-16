@@ -5,6 +5,7 @@
     xmlns:p="http://primefaces.org/ui">
 	
 	<h:panelGroup layout="block" style="padding-right: 10px">
-		<p:inputTextarea rows="10" style="width: 100%" value="#{cadastroOSBean.ordemServico.observacao}" />
+		<p:inputTextarea rows="10" style="width: 100%" value="#{cadastroOSBean.ordemServico.observacao}" 
+			disabled="#{cadastroOSBean.ordemServico.naoAlteravel}"/>
 	</h:panelGroup>
 </ui:composition>

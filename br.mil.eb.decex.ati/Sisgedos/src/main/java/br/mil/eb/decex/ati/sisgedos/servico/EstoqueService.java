@@ -20,9 +20,26 @@ public class EstoqueService implements Serializable {
 	public void baixarItensEstoque(OrdemServico ordemServico){
 		ordemServico = this.ordensServico.porId(ordemServico.getId());
 		
+<<<<<<< HEAD
 		for (ItemOS item : ordemServico.getItens()) {
 			item.getProduto().baixarEstoque(item.getQuantidade());
 		}
 	}
 
+=======
+		for (ItemOS item : ordemServico.getItens()){
+			item.getProduto().baixarEstoque(item.getQuantidade());
+		}
+	}
+
+	public void retornarItensEstoque(OrdemServico ordemServico) {
+		ordemServico = this.ordensServico.porId(ordemServico.getId());
+		
+		for (ItemOS item : ordemServico.getItens()){
+			item.getProduto().adicionarEstoque(item.getQuantidade());
+		}
+		
+	}
+	
+>>>>>>> branch 'master' of https://github.com/matrixman-arj/sisgedos.git
 }

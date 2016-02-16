@@ -156,4 +156,6 @@ a > .ui-menuitem-text {
 }
 /* Menu sistema fim */
 
-
+.ui-state-disabled {
+	opacity: .80 !important;
+}

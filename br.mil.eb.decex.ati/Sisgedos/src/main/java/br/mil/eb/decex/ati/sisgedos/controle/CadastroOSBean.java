@@ -3,6 +3,10 @@ package br.mil.eb.decex.ati.sisgedos.controle;
 import java.io.Serializable;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import javax.enterprise.event.Observes;
+>>>>>>> branch 'master' of https://github.com/matrixman-arj/sisgedos.git
 import javax.enterprise.inject.Produces;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -11,6 +15,7 @@ import javax.inject.Named;
 import org.apache.commons.lang3.StringUtils;
 
 import br.mil.eb.decex.ati.sisgedos.enumerado.FormaPagamento;
+import br.mil.eb.decex.ati.sisgedos.evento.OSAlteradaEvent;
 import br.mil.eb.decex.ati.sisgedos.modelo.Equipamento;
 import br.mil.eb.decex.ati.sisgedos.modelo.ItemOS;
 import br.mil.eb.decex.ati.sisgedos.modelo.OrdemServico;
@@ -18,7 +23,7 @@ import br.mil.eb.decex.ati.sisgedos.modelo.Produto;
 import br.mil.eb.decex.ati.sisgedos.modelo.Usuario;
 import br.mil.eb.decex.ati.sisgedos.repositorio.Produtos;
 import br.mil.eb.decex.ati.sisgedos.repositorio.Usuarios;
-import br.mil.eb.decex.ati.sisgedos.servico.CadastroOsService;
+import br.mil.eb.decex.ati.sisgedos.servico.CadastroOSService;
 import br.mil.eb.decex.ati.sisgedos.util.jsf.FacesUtil;
 import br.mil.eb.decex.ati.sisgedos.validacao.SKU;
 
@@ -37,13 +42,19 @@ public class CadastroOSBean implements Serializable {
 	
 	
 	@Inject
-	private CadastroOsService cadastroOsService;
+	private CadastroOSService cadastroOsService;
 	
 	private String sku;
 	
 	@Produces
+<<<<<<< HEAD
 	@OSEdicao
 	private OrdemServico ordemServico;
+=======
+	@OrdemServicoEdicao
+	private OrdemServico ordemServico;
+	
+>>>>>>> branch 'master' of https://github.com/matrixman-arj/sisgedos.git
 	
 	private Equipamento equipamento;
 	private List<Usuario> tecnicos;
@@ -68,6 +79,10 @@ public class CadastroOSBean implements Serializable {
 	private void limpar(){
 		ordemServico = new OrdemServico();
 		equipamento = new Equipamento();
+	}
+	
+	public void oSAlterada(@Observes OSAlteradaEvent event){
+		this.ordemServico = event.getOrdemServico();
 	}
 	
 	public void salvar(){

@@ -1,6 +1,6 @@
 package br.mil.eb.decex.ati.sisgedos.enumerado;
 
-public enum statusOS {
+public enum StatusOS {
 	
 	ORCAMENTO("Orçamento"),
 	EMITIDA("Emitida"),
@@ -12,7 +12,7 @@ public enum statusOS {
 	
 	private String descricao;
 	
-	private statusOS(String descricao) {
+	private StatusOS(String descricao) {
 		this.descricao = descricao;
 	}
 

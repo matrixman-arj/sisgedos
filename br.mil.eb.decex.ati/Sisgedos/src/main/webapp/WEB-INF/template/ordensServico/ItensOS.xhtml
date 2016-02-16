@@ -42,13 +42,14 @@
 
 		<p:column headerText="Quantidade"
 			style="text-align: center; width: 100px">
-			<p:inputText size="8" value="#{item.quantidade}" >
+			<p:inputText size="8" value="#{item.quantidade}" disabled="#{cadastroOSBean.ordemServico.naoAlteravel}" >
 				<p:ajax event="change" process="@this" 
 					update="tabelaItens :frmCadastroOS:totalOS :frmCadastroOS:subtotal" 
 					listener="#{cadastroOSBean.atualizarQuantidade(item, linha)}" />
 			</p:inputText>
 		</p:column>
 
+<<<<<<< HEAD
 		<p:column headerText="Estoque" style="text-align: center; width: 100px">			
 			<h:outputText value="#{item.produto.quantidadeEstoque}" 			
 				style="#{item.estoqueInsuficiente ? 'color: red' :'' }"/>
@@ -56,6 +57,20 @@
 			<h:graphicImage library="images" name="alerta.png" id="semEstoque"
 				style="vertical-align: bottom; margim-left: 5px"
 				rendered="#{item.estoqueInsuficiente}"/>
+=======
+		<p:column headerText="Estoque"
+			style="text-align: center; width: 100px">
+			<h:outputText value="#{item.produto.quantidadeEstoque}" 
+				style="#{item.estoqueInsuficiente ? 'color: red': ''}"/>
+				
+				<h:graphicImage library="images" name="alerta.png" id="semEstoque"
+					style="vertical-align: bottom; margin-left: 5px"
+					rendered="#{item.estoqueInsuficiente}" />
+				
+				<p:tooltip for="semEstoque" value="Estoque insuficiente" 
+					rendered="#{item.estoqueInsuficiente}"/>	
+				
+>>>>>>> branch 'master' of https://github.com/matrixman-arj/sisgedos.git
 		</p:column>
 
 		<p:column headerText="Valor total"

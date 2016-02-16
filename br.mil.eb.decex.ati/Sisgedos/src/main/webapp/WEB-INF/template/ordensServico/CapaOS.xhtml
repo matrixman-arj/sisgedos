@@ -17,7 +17,8 @@
 		<h:outputText value="#{cadastroOSBean.ordemServico.status.descricao}" />
 		
 		<p:outputLabel value="Técnico" for="tecnico" />
-		<p:selectOneMenu id="tecnico" value="#{cadastroOSBean.ordemServico.tecnico}">
+		<p:selectOneMenu id="tecnico" value="#{cadastroOSBean.ordemServico.tecnico}"
+			disabled="#{cadastroOSBean.ordemServico.naoAlteravel}">
 			<f:selectItem itemLabel="Selecione" />
 			<f:selectItems value="#{cadastroOSBean.tecnicos}" var="tecnico" 
 				itemValue="#{tecnico}" itemLabel="#{tecnico.nome}"/>
@@ -26,10 +27,12 @@
 		<p:outputLabel value="Usuário" for="usuario" />
 		<p:autoComplete id="usuario" size="40" dropdown="true" 
 			value="#{cadastroOSBean.ordemServico.usuario}" completeMethod="#{cadastroOSBean.completarUsuario}" 
-				var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}" forceSelection="true"/>
+				var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}" forceSelection="true"
+				disabled="#{cadastroOSBean.ordemServico.naoAlteravel}"/>
 		
 		<p:outputLabel value="Forma de pagamento" for="formaPagamento" />
-		<p:selectOneMenu id="formaPagamento" value="#{cadastroOSBean.ordemServico.formaPagamento}">
+		<p:selectOneMenu id="formaPagamento" value="#{cadastroOSBean.ordemServico.formaPagamento}"
+			disabled="#{cadastroOSBean.ordemServico.naoAlteravel}">
 			<f:selectItem itemLabel="Selecione" />
 			<f:selectItems value="#{cadastroOSBean.formasPagamento}" var="formaPagamento"
 				itemValue="#{formaPagamento}" itemLabel="#{formaPagamento.descricao}" />
@@ -37,7 +40,7 @@
 						
 		<p:outputLabel value="Valor do frete" for="valorFrete" />
 		<h:inputText id="valorFrete" size="10" maxlength="10" styleClass="moeda" 
-			value="#{cadastroOSBean.ordemServico.valorFrete}">
+			value="#{cadastroOSBean.ordemServico.valorFrete}" disabled="#{cadastroOSBean.ordemServico.naoAlteravel}" >
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 			
 			<p:ajax event="change" process="@this" update="totalOS"
@@ -52,7 +55,7 @@
 		
 		<p:outputLabel value="Valor de desconto" for="valorDesconto" />
 		<p:inputText id="valorDesconto" size="10" maxlength="10" styleClass="moeda"
-			value="#{cadastroOSBean.ordemServico.valorDesconto}" >
+			value="#{cadastroOSBean.ordemServico.valorDesconto}" disabled="#{cadastroOSBean.ordemServico.naoAlteravel}" >
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 			
 			<p:ajax event="change" process="@this" update="totalOS"
