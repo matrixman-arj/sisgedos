@@ -28,7 +28,7 @@ public class CancelamentoOSService implements Serializable {
 					+ ordemServico.getStatus().getDescricao() + ".");
 		}
 		if 
-		(ordemServico.iEmitida()){
+		(ordemServico.isEmitida()){
 			this.estoqueService.retornarItensEstoque(ordemServico);
 		}
 		

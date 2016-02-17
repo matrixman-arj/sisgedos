@@ -103,11 +103,9 @@ public class ItemOS implements Serializable {
 	
 	@Transient
 	public boolean isEstoqueSuficiente(){
-<<<<<<< HEAD
-		return this.getOrdemServico().isEmitido() || this.getProduto().getId() == null 
-=======
-		return this.getOrdemServico().iEmitida() || this.getProduto().getId() == null 
->>>>>>> branch 'master' of https://github.com/matrixman-arj/sisgedos.git
+
+		return this.getOrdemServico().isEmitida() || this.getProduto().getId() == null 
+
 				|| this.getProduto().getQuantidadeEstoque() >= this.getQuantidade();
 	}
 	

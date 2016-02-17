@@ -25,7 +25,7 @@ public class CancelamentoOSBean implements Serializable {
 	private Event<OSAlteradaEvent> oSAlteradaEvent;
 	
 	@Inject
-	@OrdemServicoEdicao
+	@OSEdicao
 	private OrdemServico ordemServico;
 	
 	public void cancelarOrdemServico(){

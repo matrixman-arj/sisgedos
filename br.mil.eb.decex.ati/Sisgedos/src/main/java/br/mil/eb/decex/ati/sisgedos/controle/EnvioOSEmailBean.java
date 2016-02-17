@@ -1,15 +1,19 @@
 package br.mil.eb.decex.ati.sisgedos.controle;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.velocity.tools.generic.NumberTool;
+
 import br.mil.eb.decex.ati.sisgedos.modelo.OrdemServico;
 import br.mil.eb.decex.ati.sisgedos.util.jsf.FacesUtil;
 import br.mil.eb.decex.ati.sisgedos.util.mail.Mailer;
 import com.outjected.email.api.MailMessage;
+import com.outjected.email.impl.templating.velocity.VelocityTemplate;
 
 @Named
 @RequestScoped
@@ -21,7 +25,7 @@ public class EnvioOSEmailBean implements Serializable {
 	private Mailer mailer;
 	
 	@Inject
-	@OrdemServicoEdicao
+	@OSEdicao
 	private OrdemServico ordemServico;
 	
 	public void enviarOrdemServico() {
@@ -29,7 +33,10 @@ public class EnvioOSEmailBean implements Serializable {
 		
 		message.to(this.ordemServico.getUsuario().getEmail())
 			.subject("OrdemServico " + this.ordemServico.getId())
-			.bodyHtml("<strong>Valor total:</strong> " + this.ordemServico.getValorTotal())
+			.bodyHtml(new VelocityTemplate(getClass().getResourceAsStream("/emails/ordemServico.template")))
+			.put("ordemServico", this.ordemServico)
+			.put("numberTool", new NumberTool())
+			.put("locale", new Locale("pt", "BR"))
 			.send();
 		
 		FacesUtil.addInfoMessage("Ordem de serviço enviado por e-mail com sucesso!");

@@ -3,10 +3,8 @@ package br.mil.eb.decex.ati.sisgedos.controle;
 import java.io.Serializable;
 import java.util.List;
 
-<<<<<<< HEAD
-=======
+
 import javax.enterprise.event.Observes;
->>>>>>> branch 'master' of https://github.com/matrixman-arj/sisgedos.git
 import javax.enterprise.inject.Produces;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -47,14 +45,8 @@ public class CadastroOSBean implements Serializable {
 	private String sku;
 	
 	@Produces
-<<<<<<< HEAD
 	@OSEdicao
 	private OrdemServico ordemServico;
-=======
-	@OrdemServicoEdicao
-	private OrdemServico ordemServico;
-	
->>>>>>> branch 'master' of https://github.com/matrixman-arj/sisgedos.git
 	
 	private Equipamento equipamento;
 	private List<Usuario> tecnicos;

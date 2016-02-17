@@ -123,14 +123,14 @@ public class Produto implements Serializable {
 	public void baixarEstoque(Integer quantidade) {
 		int novaQuantidade = this.getQuantidadeEstoque() - quantidade;
 		
-<<<<<<< HEAD
+
 		if (novaQuantidade < 0){
 			throw new NegocioException("Não há disponibilidade no estoque de " 
 					+ quantidade + "itens do produto " + this.getSku() + ".");
 		}
 		
 		this.setQuantidadeEstoque(novaQuantidade);
-=======
+
 		if (novaQuantidade < 0 ){
 			throw new NegocioException("Não há disponibilidade no estoque de "
 					+ quantidade + " itens do produto " + this.getSku()+ "." );
@@ -140,7 +140,7 @@ public class Produto implements Serializable {
 
 	public void adicionarEstoque(Integer quantidade) {
 		this.setQuantidadeEstoque(getQuantidadeEstoque()+ quantidade);		
->>>>>>> branch 'master' of https://github.com/matrixman-arj/sisgedos.git
+
 	}
 
 }

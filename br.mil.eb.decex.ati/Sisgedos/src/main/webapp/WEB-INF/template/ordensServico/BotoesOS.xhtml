@@ -12,22 +12,15 @@
 		</p:toolbarGroup>
 	
 		<p:toolbarGroup align="right">
-<<<<<<< HEAD
+
 			<p:commandButton value="Emitir" action="#{emissaoOSBean.emitirOS}" 
-				process="@form" update="@form"/>
-			<p:commandButton value="Cancelar" />
-			<p:commandButton value="Enviar por e-mail" />
-=======
-		
-			<p:commandButton value="Emitir" action="#{emissaoOSBean.emitirOrdemServico}" 
-				process="@form" update="@form" disabled="#{cadastroOSBean.ordemServico.naoEmissivel}" />
-				
+				process="@form" update="@form"/>		
+									
 			<p:commandButton value="Cancelar" action="#{cancelamentoOSBean.cancelarOrdemServico}"
 				process="@this" update="@form" disabled="#{cadastroOSBean.ordemServico.naoCancelavel}" />
 				
 			<p:commandButton value="Enviar por e-mail" action="#{envioOSEmailBean.enviarOrdemServico}" 
 				process="@this" disabled="#{cadastroOSBean.ordemServico.naoEnviavelPorEmail}"/>
->>>>>>> branch 'master' of https://github.com/matrixman-arj/sisgedos.git
 			
 			<p:separator/>
 			<p:button value="Pesquisa" outcome="/ordensServico/PesquisaOS" />

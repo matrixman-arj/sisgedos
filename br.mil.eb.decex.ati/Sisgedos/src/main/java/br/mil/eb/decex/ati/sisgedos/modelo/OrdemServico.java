@@ -267,16 +267,12 @@ public class OrdemServico implements Serializable {
 	public boolean isValorTotalNegativo() {		
 		return this.getValorTotal().compareTo(BigDecimal.ZERO)< 0;
 	}
-
-	public boolean iEmitida() {		
-		return StatusOS.EMITIDA.equals(this.getStatus());
-	}
 	
 	@Transient
-<<<<<<< HEAD
-	public boolean isEmitido() {		
-		return statusOS.EMITIDA.equals(this.getStatus());
+	public boolean isEmitida() {		
+		return StatusOS.EMITIDA.equals(this.getStatus());
 	}
+
 	
 	@Transient
 	public boolean isNaoEmissivel() {		
@@ -285,16 +281,6 @@ public class OrdemServico implements Serializable {
 	
 	@Transient
 	public boolean isEmissivel() {		
-		return this.isExistente() && this.isOrcamento();
-	}
-	
-=======
-	public boolean isNaoEmissivel() {		
-		return !this.isEmissivel();
-	}
-	
-	@Transient
-	public boolean isEmissivel(){
 		return this.isExistente() && this.isOrcamento();
 	}
 	
@@ -327,5 +313,5 @@ public class OrdemServico implements Serializable {
 	public boolean isNaoEnviavelPorEmail() {
 		return this.isNovo() || this.isCancelado();
 	}
->>>>>>> branch 'master' of https://github.com/matrixman-arj/sisgedos.git
+
 }
