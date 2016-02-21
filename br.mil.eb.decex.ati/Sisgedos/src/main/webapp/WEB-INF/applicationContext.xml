@@ -6,6 +6,8 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
            
+    <beans:bean id="appUserDetailsService"  class="br.mil.eb.decex.ati.sisgedos.seguranca.AppUserDetailsService" />
+           
 	<http pattern="/javax.faces.resource/**" security="none" />
 	
 	<http auto-config="true" use-expressions="true">
@@ -16,11 +18,8 @@
 	</http>
 	
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="vanilton" password="27585980" authorities="TECNICOS" />
-				<user name="nill" password="27585980" authorities="ADMINISTRADORES" />
-			</user-service>
+		<authentication-provider user-service-ref="appUserDetailsService">
+			<!-- <password-encoder hash="md5" -->
 		</authentication-provider>
 	</authentication-manager>
            
