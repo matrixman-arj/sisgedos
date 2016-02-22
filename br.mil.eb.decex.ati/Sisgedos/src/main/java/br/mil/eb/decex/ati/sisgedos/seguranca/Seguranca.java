@@ -1,7 +1,9 @@
 package br.mil.eb.decex.ati.sisgedos.seguranca;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -9,6 +11,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 @Named
 @RequestScoped
 public class Seguranca {
+	
+	@Inject
+	private ExternalContext externalContext;
 	
 	public String getNomeUsuario(){
 		String nome = null;
@@ -32,5 +37,17 @@ public class Seguranca {
 		}
 		
 		return usuario;
+	}
+	
+	public boolean isemitirOSPermitida(){
+		return externalContext.isUserInRole("ADMINISTRADORES") 
+				|| externalContext.isUserInRole("TECNICOS");
+		
+	}
+	
+	public boolean isCancelarOSPermitida(){
+		return externalContext.isUserInRole("ADMINISTRADORES") 
+				|| externalContext.isUserInRole("TECNICOS");
+		
 	}
 }

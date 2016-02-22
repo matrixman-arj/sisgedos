@@ -14,10 +14,11 @@
 		<p:toolbarGroup align="right">
 
 			<p:commandButton value="Emitir" action="#{emissaoOSBean.emitirOS}" 
-				process="@form" update="@form"/>		
+				process="@form" update="@form"
+				 disabled="#{cadastroOSBean.ordemServico.naoEmissivel or not seguranca.emitirOSPermitida}" />		
 									
 			<p:commandButton value="Cancelar" action="#{cancelamentoOSBean.cancelarOrdemServico}"
-				process="@this" update="@form" disabled="#{cadastroOSBean.ordemServico.naoCancelavel}" />
+				process="@this" update="@form" disabled="#{cadastroOSBean.ordemServico.naoCancelavel or not cancelarOSPermitida}" />
 				
 			<p:commandButton value="Enviar por e-mail" action="#{envioOSEmailBean.enviarOrdemServico}" 
 				process="@this" disabled="#{cadastroOSBean.ordemServico.naoEnviavelPorEmail}"/>

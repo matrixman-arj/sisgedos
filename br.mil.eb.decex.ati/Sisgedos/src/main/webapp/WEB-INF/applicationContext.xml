@@ -33,6 +33,7 @@
 		<custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR" />
 		
 		<intercept-url pattern="/Home.xhtml" access="isAuthenticated()"/>
+		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()"/>
 		<intercept-url pattern="/ordensServico/**" access="hasAnyRole('TECNICOS', 'COMUNS', 'ADMINISTRADORES')"/>
 		<intercept-url pattern="/produtos/**" access="hasAnyRole('ADMINISTRADORES')"/>
 		<intercept-url pattern="/**" access="denyAll" />
