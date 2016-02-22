@@ -8,11 +8,30 @@
            
     <beans:bean id="appUserDetailsService"  class="br.mil.eb.decex.ati.sisgedos.seguranca.AppUserDetailsService" />
      
+    <beans:bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+	    <beans:property name="accessDeniedHandler" ref="jsfAccessDeniedHandler"/>
+	    <beans:property name="authenticationEntryPoint" ref="authenticationEntryPoint"/>
+	</beans:bean>
+	
+	<beans:bean id="jsfAccessDeniedHandler" class="br.mil.eb.decex.ati.sisgedos.seguranca.JsfAccessDeniedHandler">
+	    <beans:property name="loginPath" value="/AcessoNegado.xhtml" />
+	    <beans:property name="contextRelative" value="true" />
+	</beans:bean>
+	
+	<beans:bean id="authenticationEntryPoint" class="br.mil.eb.decex.ati.sisgedos.seguranca.JsfLoginUrlAuthenticationEntryPoint">
+	    <beans:property name="loginFormUrl" value="/Login.xhtml"/>
+	    <beans:property name="redirectStrategy" ref="jsfRedirectStrategy" />
+	</beans:bean>
+	
+	<beans:bean id="jsfRedirectStrategy" class="br.mil.eb.decex.ati.sisgedos.seguranca.JsfRedirectStrategy"/>
+     
      <http pattern="/Login.xhtml" security="none" />
      <http pattern="/Erro.xhtml" security="none" />           
 	 <http pattern="/javax.faces.resource/**" security="none" />
 	
 	<http auto-config="false" use-expressions="true">
+		<custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+		
 		<intercept-url pattern="/Home.xhtml" access="isAuthenticated()"/>
 		<intercept-url pattern="/ordensServico/**" access="hasAnyRole('TECNICOS', 'COMUNS', 'ADMINISTRADORES')"/>
 		<intercept-url pattern="/produtos/**" access="hasAnyRole('ADMINISTRADORES')"/>
