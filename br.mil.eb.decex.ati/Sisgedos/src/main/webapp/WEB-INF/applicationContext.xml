@@ -35,7 +35,8 @@
 		<intercept-url pattern="/Home.xhtml" access="isAuthenticated()"/>
 		<intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()"/>
 		<intercept-url pattern="/ordensServico/**" access="hasAnyRole('TECNICOS', 'COMUNS', 'ADMINISTRADORES')"/>
-		<intercept-url pattern="/produtos/**" access="hasAnyRole('ADMINISTRADORES')"/>
+		<intercept-url pattern="/produtos/**" access="hasAnyRole('ADMINISTRADORES', 'TECNICOS', 'COMUNS')"/>
+		<intercept-url pattern="/relatorios/**" access="hasAnyRole('ADMINISTRADORES', 'TECNICOS', 'COMUNS')" />
 		<intercept-url pattern="/**" access="denyAll" />
 		
 		<form-login login-page="/Login.xhtml" authentication-failure-url="/Login.xhtml?invalid=true"
