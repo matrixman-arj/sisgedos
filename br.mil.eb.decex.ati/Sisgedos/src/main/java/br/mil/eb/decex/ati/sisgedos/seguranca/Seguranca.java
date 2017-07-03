@@ -22,7 +22,7 @@ public class Seguranca {
 		UsuarioSistema usuarioLogado = getUsuarioLogado();
 		
 		if (usuarioLogado != null){
-		nome = usuarioLogado.getUsuario().getPostoGraduacao()   + "  " + usuarioLogado.getUsuario().getNomeGuerra();
+		nome = usuarioLogado.getUsuario().getPostoGraduacao().getDescricao()  + "  " + usuarioLogado.getUsuario().getNomeGuerra();
 		}
 		return nome;
 	}

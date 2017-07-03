@@ -42,11 +42,15 @@ public enum Posto {
 	CB("Cabo"),
 	SD("Soldado");		
 	
-	@SuppressWarnings("unused")	
-	private String value;
+private String descricao ;
 	
-	private Posto(String value) {
-		this.value = value;
+	private Posto(String descricao) {
+		this.descricao = descricao;
 	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+	
 	
 }
